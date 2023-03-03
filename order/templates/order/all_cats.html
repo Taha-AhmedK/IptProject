@@ -1,0 +1,40 @@
+{% extends 'order/layout.html' %} {% load static %} {% block main %}
+
+<section class="container all-cats">
+  <h1 class="text-center my-2">All Categories</h1>
+  {% for eachCat in all_cats %}
+  <a href="{% url 'category' eachCat.Name %}">
+    {% if forloop.counter|divisibleby:2 %}
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ eachCat.Name.title }}</h5>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <img src="{{ eachCat.photo.url }}" alt="" class="cat-pic" />
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-9">
+          <img src="{{ eachCat.photo.url }}" alt="" class="cat-pic" />
+        </div>
+        <div class="col-md-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ eachCat.Name.title }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </a>
+  {% endfor %}
+</section>
+
+{% endblock %}

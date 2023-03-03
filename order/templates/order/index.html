@@ -1,0 +1,74 @@
+{% extends 'order/layout.html' %}
+{% load static %}
+{% block styles %}
+
+{% endblock %}
+{% block main %}
+
+    <!-- Slider -->
+   <section id="IndexCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#IndexCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#IndexCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#IndexCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+        <div class="carousel-item active">
+      <img src="../../static/order/imgs/banner.png" class="d-block w-100" alt="">
+      <div class="carousel-caption">
+        <h5>Feeling Hungry?</h5>
+        <p>Don't worry Foodiliver has your back. Order now and enjoy the best deals in town.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../../static/order/imgs/banner-2.png" class="d-block w-100" alt="">
+      <div class="carousel-caption">
+        <h5>Get Amazing Discounts</h5>
+        <p>Foodiliver offers discounted deals at very amazing prices. </p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://www.foodfusion.com/wp-content/uploads/2018/02/ff-home-banner.jpg" class="d-block w-100" alt="">
+      <div class="carousel-caption">
+        <h5>Fast Delivery</h5>
+        <p>Enjoy your freshly cook and hot meal delivered within forty-five minutes.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#IndexCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#IndexCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</section>
+    <!-- Slider end -->
+
+    <section id="recipes" class="container recipes">
+
+
+    <h1 class="text-center my-2 " >Our Specialities</h1>
+    <div class="row">
+        {% for eachRecipe in recipes %}
+        <div class="col-sm-12 col-md-6 col-lg-3 my-xs-4 my-lg-1">
+        <a href="{% url 'view_recipe' eachRecipe.Slug %}">
+        <div class="card">
+  <img width="300" height="225" src="{{ eachRecipe.images.first.image.url }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h2 class="card-text text-center">{{ eachRecipe.Name|title}}</h2>
+  </div>
+</div>
+        </a>
+        </div>
+            {% if forloop.counter|divisibleby:4  %}
+        </div><div class="row">
+
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    </section>
+{% endblock %}

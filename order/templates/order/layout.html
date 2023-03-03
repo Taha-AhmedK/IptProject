@@ -1,0 +1,137 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="{% static 'order/css/styles.css' %}">
+    {% block styles %}{% endblock %}
+
+    <title>{% block title %}Foodish{% endblock %}</title>
+</head>
+<body>
+<!-- Navtop -->
+<header class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid my-2">
+        <a class="navbar-brand h1 mb-0" href="{% url 'index' %}">Foodiliver</a>
+        <div class="" id="navbarSupportedContent">
+      <span class="me-auto">
+      </span>
+            <div class="d-flex">
+                <!-- <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> -->
+                {% if user.is_authenticated %}
+                    <div class="d-flex accounts">
+                        <a href="{% url 'view_profile' %}" class="nav-link">{{ user.username }}</a>
+                        <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                    </div>
+
+                {% else %}
+                    <div class="d-flex accounts">
+                        <a href="{% url 'login' %}" class="nav-link">Login</a>
+                        <a href="{% url 'signup' %}" class="nav-link">Sign up</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+</header>
+<nav class="row">
+    <ul class="nav nav-pills nav-fill">
+        {% with url_name=request.resolver_match.url_name %}
+            <li class="nav-item {% if url_name == 'index' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home fa-2x"></i><span
+                        class="d-none d-md-block">Home</span></a>
+            </li>
+
+            {% url 'category' 'drinks' as drinks_url %}
+            <li class="nav-item {% if request.path == drinks_url %}active{% endif %}">
+                <a class="nav-link" href="{{ drinks_url }}"><i class="fas fa-glass-martini-alt fa-2x"></i><span
+                        class="d-none d-md-block">Drinks</span></a>
+            </li>
+            {% url 'category' 'pizzas' as pizzas_url %}
+            {% url 'category' 'cakes' as cakes_url %}
+            {% url 'category' 'parathas' as parathas_url %}
+            {% url 'category' 'kababs' as kababs_url %}
+            {% url 'category' 'burgers and sandwiches' as bandg_url %}
+            {% url 'category' 'salads' as salads_url %}
+            {% url 'category' 'breads' as breads_url %}
+            {% url 'category' 'kids menu' as kids_url %}
+            {% url 'category' 'desserts' as desserts_url %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="true"><i
+                        class="fas fa-burger-soda fa-2x"></i></br><span class="d-none d-md-inline">Dish Type</span></a>
+                <div class="dropdown-menu dropdown-large py-2" data-bs-popper="none">
+                    <div class="container-fluid">
+                        <div class="row mx-3">
+                            <div class="col-6 px-2">
+
+                                <ul class="list-unstyled">
+                                    <li class="nav-item"><a href="{{ pizzas_url }}">Pizzas</a></li>
+                                    <li class="nav-item"><a href="{{ parathas_url }}">Parathas</a></li>
+                                    <li class="nav-item"><a href="{{ kababs_url }}">Kababs</a></li>
+                                    <li class="nav-item"><a href="{{ bandg_url }}">Burgers and Sandwiches</a></li>
+
+
+                                </ul>
+                            </div>
+                            <!-- end col-3 -->
+                            <div class="col-6 px-2">
+                                <ul class="list-unstyled">
+                                    <li class="nav-item"><a href="{{ salads_url }}">Salads</a></li>
+                                    <li class="nav-item"><a href="{{ kids_url }}">Kids Menu</a></li>
+                                    <li class="nav-item"><a href="{{ desserts_url }}">Desserts</a></li>
+                                </ul>
+                            </div><!-- end col-3 -->
+                        </div>
+                    </div><!-- end row -->
+                    <p class="nav-item pt-2"><a href="{% url 'all_categories' %}">View All Categories</a></p>
+                </div> <!-- dropdown-large.// -->
+            </li>
+            {% url 'category' 'breakfast' as breakfast_url %}
+            <li class="nav-item {% if request.path == breakfast_url %}active{% endif %}">
+                <a class="nav-link" href="{{ breakfast_url }}"><i class="fas fa-egg-fried fa-2x"></i><span
+                        class="d-none d-md-block">Breakfast</span></a>
+            </li>
+            {% url 'category' 'lunch' as lunch_url %}
+            <li class="nav-item {% if request.path == lunch_url %}active{% endif %}">
+                <a class="nav-link" href="{{ lunch_url }}"><i class="fas fa-utensils fa-2x"></i><span
+                        class="d-none d-md-block">Lunch/Dinner</span></a>
+            </li>
+        {% endwith %}
+    </ul>
+</nav>
+<!-- Navbar end -->
+<main>
+    {% block main %}
+    {% endblock %}
+</main>
+<footer>
+    <div class="footer">
+        <p class="text-center"><i class="far fa-copyright"></i> Developed by Taha Ahmed Khan and Saqib Iqbal</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

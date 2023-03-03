@@ -1,0 +1,194 @@
+body {
+    background-color: #F5E9E2;
+}
+
+body .card {
+    border-radius: 16px;
+    background-color: #F5E9E2;
+}
+
+header {
+    background-color: #141301;
+}
+
+/* Casual Navigational links */
+nav a {
+    color: #141301;
+}
+
+nav a:hover {
+    color: #FF711F;
+}
+
+.dropdown-large {
+    background-color: #F5E9E2;
+}
+
+
+/* Highlighted nagivational links */
+
+nav .active {
+
+    background-color: #FF711F;
+    border-radius: 8px;
+}
+
+div.accounts {
+    background-color: #FF711F;
+    border-radius: 8px;
+
+}
+
+.active > a, .accounts > a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.active > a:hover, .accounts > a:hover {
+    color: #141301;
+}
+
+/* large Nav box */
+nav > ul li.dropdown .dropdown-large {
+    width: 25rem;
+}
+
+@media (max-width: 280px) {
+    nav a {
+        font-size: x-small;
+    }
+}
+
+@media (max-width: 576px) {
+    nav > ul li.dropdown .dropdown-large {
+        width: 80vw !important;
+        left: -30px !important;
+    }
+
+}
+
+
+/* Forms */
+input:focus,
+textarea:focus,
+select:focus,
+input:active,
+textarea:active,
+select:active {
+
+
+    border-color: #FF711F !important;
+    outline: 0 !important;
+    -webkit-box-shadow: inset 0 1px 1px #FF711F, 0 0 8px #FF711F !important;
+    box-shadow: inset 0 1px 1px #FF711F, 0 0 8px #FF711F !important;
+}
+
+/* index carousal */
+
+section#IndexCarousel img {
+    height: 350px;
+}
+
+/* Main & Footer */
+main {
+    min-height: 80vh;
+}
+
+footer {
+    background-color: #141301;
+    color: #F5E9E2;
+    position: relative;
+    bottom: -20px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #F5E9E2;
+}
+
+footer a:hover {
+    color: #E05200;
+}
+
+
+.btn-primary {
+    background-color: #FF711F;
+    border-color: #FF711F !important;
+    outline: 0 !important;
+}
+
+.btn-primary:hover {
+    background-color: #FF711F;
+    color: #141301;
+}
+
+form > img.login {
+    height: 100px !important;
+}
+
+form > img.signup {
+    height: 100px !important;
+}
+
+.card-title {
+    color: #FF711F;
+}
+
+img.cat-pic {
+    height: 20rem;
+    width: 100%;
+
+}
+
+#recipe_carousel > .carousel-inner > div img {
+    height: 20rem;
+}
+
+#recipe_decor {
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+#recipe_decor h2 {
+    color: #FF711F;
+}
+
+.recipes .row a {
+    text-decoration: none;
+
+}
+
+.recipes .card h2 {
+
+    font-family: 'gregular', Serif;
+
+    color: #141301;
+
+}
+
+.recipes .card {
+    height: 100%;
+}
+
+.btn[name='add_fav'], .btn[name='edit'] {
+    border-color: #FF711F;
+    color: #141301;
+}
+
+.btn[name='fav'] {
+    border-color: #FF711F;
+    color: #F5E9E2;
+    background-color: #E05200;
+}
+
+.all-cats a {
+    text-decoration: none;
+}
+
+.all-cats .card-title {
+    margin: 50% 0;
+    text-align: center;
+    font-size: 200%;
+    font-family: 'gregular', Serif;
+}
